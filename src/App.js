@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import DashBoard from "./Components/DashBoard";
 
+import { createBrowserRouter, Outlet } from "react-router-dom";
+import Header from "./Components/Header";
+import React from "react";
+import CreateAdd from "./Components/CreateAdd";
+import AddInsights from "./Components/AddInsights";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Outlet />
     </div>
   );
 }
+export const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <DashBoard />,
+      },
+      {
+        path: "/createAdd",
+        element: <CreateAdd />,
+      },
+      {
+        path: "/insights",
+        element: <AddInsights />,
+      },
+    ],
+  },
+]);
 
 export default App;
